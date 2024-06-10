@@ -20,7 +20,7 @@ CLIENT_ID=YOUR_CLIENT_ID
 - [x] Command handler
 - [x] Event handler
 - [x] Config handler
-- [] Database handler
+- [ ] Database handler
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
