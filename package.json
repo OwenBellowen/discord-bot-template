@@ -1,0 +1,38 @@
+{
+  "name": "discord-bot-template",
+  "version": "1.0.0",
+  "description": "A fully functional and customizable discord bot template for your Discord bot!",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "start": "node dist/index.js",
+    "start:ts": "ts-node src/index.ts",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "discord.js",
+    "typescript",
+    "template",
+    "discord-bot",
+    "discord-bot-template"
+  ],
+  "author": "OwenBellowen",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OwenBellowen/discord-bot-template"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.15.3",
+    "dotenv": "^16.4.5",
+    "rimraf": "^5.0.7",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.5"
+  }
+}
