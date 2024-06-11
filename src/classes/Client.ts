@@ -15,8 +15,8 @@ export default class BotClient extends Client<true> {
     public modals: Collection<string, BaseModal> = new Collection();
 
     public commandHandler: CommandHandler = new CommandHandler(this);
-    public eventHandler: EventHandler = new EventHandler(this);
-    public interactionHandler: InteractionHandler = new InteractionHandler(this);
+    private eventHandler: EventHandler = new EventHandler(this);
+    private interactionHandler: InteractionHandler = new InteractionHandler(this);
 
     public logger: Logger = new Logger();
 
