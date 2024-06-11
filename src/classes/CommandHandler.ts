@@ -19,6 +19,8 @@ export default class CommandHandler {
                 this.client.commands.set(Command.data.name, Command);
             }
         }
+
+        this.client.logger.success("Loaded all commands!");
     }
 
     public async registerCommands() {
@@ -27,8 +29,10 @@ export default class CommandHandler {
         const commands = this.client.commands.map((command) => command.data.toJSON());
 
         try {
+            this.client.logger.info("Started refreshing application (/) commands.");
             await rest.put(Routes.applicationGuildCommands(process.env.CLIENT_ID!, process.env.GUILD_ID!), { body: [] });
             await rest.put(Routes.applicationGuildCommands(process.env.CLIENT_ID!, process.env.GUILD_ID!), { body: commands });
+            this.client.logger.success("Successfully reloaded application (/) commands.");
         } catch (error) {
             console.error(error);
         }

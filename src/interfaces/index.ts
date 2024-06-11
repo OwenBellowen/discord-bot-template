@@ -8,7 +8,11 @@ import {
     SlashCommandSubcommandsOnlyBuilder,
     ClientEvents,
     PermissionResolvable,
-    AutocompleteInteraction
+
+    AutocompleteInteraction,
+    ButtonInteraction,
+    StringSelectMenuInteraction,
+    ModalSubmitInteraction
 } from "discord.js";
 import BotClient from "../classes/Client";
 
@@ -34,4 +38,19 @@ export interface BaseEvent {
     name: keyof ClientEvents;
     once?: boolean;
     execute: (client: BotClient, ...args: ClientEvents[keyof ClientEvents]) => Awaitable<void>;
+}
+
+export interface BaseButton {
+    customId: string;
+    execute: (interaction: ButtonInteraction) => Awaitable<void>;
+}
+
+export interface BaseSelectMenu {
+    customId: string;
+    execute: (interaction: StringSelectMenuInteraction) => Awaitable<void>;
+}
+
+export interface BaseModal {
+    customId: string;
+    execute: (interaction: ModalSubmitInteraction) => Awaitable<void>;
 }
