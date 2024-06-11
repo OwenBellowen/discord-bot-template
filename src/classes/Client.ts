@@ -1,11 +1,13 @@
 import { Client, IntentsBitField, Collection } from "discord.js";
 import { BaseCommand, BaseEvent, BaseButton, BaseModal, BaseSelectMenu } from "../interfaces";
+import { connect } from "mongoose";
 import "dotenv/config";
 
 import CommandHandler from "./CommandHandler";
 import EventHandler from "./EventHandler";
 import InteractionHandler from "./InteractionHandler";
 import Logger from "./Logger";
+import KVDatabase from "./KVDatabase";
 
 export default class BotClient extends Client<true> {
     public commands: Collection<string, BaseCommand> = new Collection();
@@ -19,6 +21,7 @@ export default class BotClient extends Client<true> {
     private interactionHandler: InteractionHandler = new InteractionHandler(this);
 
     public logger: Logger = new Logger();
+    public kvDatabase: KVDatabase = new KVDatabase(this);
 
     constructor() {
         super({
@@ -50,5 +53,10 @@ export default class BotClient extends Client<true> {
         await this.interactionHandler.loadButtons();
         await this.interactionHandler.loadSelectMenus();
         await this.interactionHandler.loadModals();
+
+        // Connect to MongoDB
+        await connect(process.env.MONGO_URI!)
+            .then(() => this.logger.success("Connected to MongoDB!"))
+            .catch((error) => this.logger.error(`An error occurred while connecting to MongoDB: ${error}`));
     }
 }
