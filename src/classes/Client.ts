@@ -4,6 +4,7 @@ import "dotenv/config";
 
 import CommandHandler from "./CommandHandler";
 import EventHandler from "./EventHandler";
+import Logger from "./Logger";
 
 export default class BotClient extends Client<true> {
     public commands: Collection<string, BaseCommand> = new Collection();
@@ -11,6 +12,8 @@ export default class BotClient extends Client<true> {
 
     public commandHandler: CommandHandler = new CommandHandler(this);
     public eventHandler: EventHandler = new EventHandler(this);
+
+    public logger!: Logger;
 
     constructor() {
         super({

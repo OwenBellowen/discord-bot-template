@@ -14,7 +14,7 @@ export default <BaseCommand>{
     async execute(interaction: CommandInteraction) {
         const embed = new EmbedBuilder()
             .setTitle("Pong!")
-            .setDescription(`Websocket heartbeat: ${interaction.client.ws.ping}ms`)
+            .setDescription(`Websocket heartbeat: ${interaction.client.ws.ping}ms\nRoundtrip latency: ${Date.now() - interaction.createdTimestamp}ms`)
             .setColor("Blurple");
 
         await interaction.reply({ embeds: [embed] });

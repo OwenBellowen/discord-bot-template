@@ -27,6 +27,7 @@ export default class CommandHandler {
         const commands = this.client.commands.map((command) => command.data.toJSON());
 
         try {
+            await rest.put(Routes.applicationGuildCommands(process.env.CLIENT_ID!, process.env.GUILD_ID!), { body: [] });
             await rest.put(Routes.applicationGuildCommands(process.env.CLIENT_ID!, process.env.GUILD_ID!), { body: commands });
         } catch (error) {
             console.error(error);
