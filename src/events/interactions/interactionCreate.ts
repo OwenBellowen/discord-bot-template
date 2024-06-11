@@ -56,5 +56,17 @@ export default <BaseEvent>{
                 await interaction.reply({ content: "There was an error while executing this modal!", ephemeral: true });
             }
         }
+
+        if (interaction.isAutocomplete()) {
+            const command = client.commands.get(interaction.commandName);
+
+            if (!command || !command.autocomplete) return;
+
+            try {
+                await command.autocomplete(interaction);
+            } catch (error) {
+                client.logger.error(`An error occurred while executing the ${interaction.commandName} command: ${error}`);
+            }
+        }
     }
 }
